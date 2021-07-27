@@ -16,8 +16,10 @@ const AddMetric = ({onAdd}) => {
     var dat;
     var serviceAlert;
     var end;
+    var ime;
     var datDiff;
     var saDiff;
+    var imeDiff;
     var duration;
     var datScore;
     var saScore;
@@ -56,17 +58,22 @@ const AddMetric = ({onAdd}) => {
             alert('Please enter an end time')
             return
         }
-
+        
+        
         start = moment(startTime, 'h:mm A')
         dat = moment(datTime, 'h:mm A')
         serviceAlert = moment(saTime, 'h:mm A')
         end = moment(endTime, 'h:mm A')
+        ime = moment(imeTime, 'h:mm A')
 
         datDiff = moment.duration(dat.diff(start))
         datDiff = datDiff.asMinutes()
 
         saDiff = moment.duration(serviceAlert.diff(start))
         saDiff = saDiff.asMinutes()
+
+        imeDiff = moment.duration(ime.diff(start))
+        imeDiff = imeDiff.asMinutes()
 
         duration = moment.duration(end.diff(start))
         duration = duration.asMinutes()
@@ -102,6 +109,14 @@ const AddMetric = ({onAdd}) => {
 
         }
 
+        if (imeDiff >= 0 && imeDiff <= 15) {
+            imeScore = 1;
+
+        } else {
+            imeScore = 3;
+
+        }
+
     }
 
     //Sev 2
@@ -130,6 +145,14 @@ const AddMetric = ({onAdd}) => {
 
         } else {
             durationScore = 3;
+
+        }
+
+        if (imeDiff >= 0 && imeDiff <= 30) {
+            imeScore = 1;
+
+        } else {
+            imeScore = 3;
 
         }
 
@@ -164,9 +187,17 @@ const AddMetric = ({onAdd}) => {
 
         }
 
+        if (imeDiff >= 0 && imeDiff <= 60) {
+            imeScore = 1;
+
+        } else {
+            imeScore = 3;
+
+        }
+
     }
 
-        onAdd({text, desc, date, sev, day, startTime, datTime, saTime, endTime, duration, saDiff, datDiff, durationScore, saScore, datScore, imeTime})
+        onAdd({text, desc, date, sev, day, startTime, datTime, saTime, endTime, duration, saDiff, datDiff, durationScore, saScore, datScore, imeTime, imeDiff, imeScore})
 
         setText('')
         setDesc('')

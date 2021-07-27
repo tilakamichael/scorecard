@@ -14,9 +14,11 @@ const Metric = ({metric, onDelete}) => {
             <p className='paragraph'>Start Time: {metric.startTime}</p>
             <p className='paragraph'>DAT Aware Time: {metric.datTime}</p>
             <p className='paragraph'>Service Alert Time: {metric.saTime}</p>
+            <p className='paragraph'>Incident Management Escalation Time: {metric.imeTime}</p>
             <p className='paragraph'>End Time: {metric.endTime}</p>
             <p className='paragraph'>DAT Reaction Time: {metric.datDiff} minutes with a score of {metric.datScore}</p>
-            <p className='paragraph'>SA Reaction Time: {metric.saDiff} minutes with a score of {metric.saScore}</p>
+            <p className='paragraph'>Service Alert Reaction Time: {metric.saDiff} minutes with a score of {metric.saScore}</p>
+            <p className='paragraph'>Incident Management Escalation Reaction Time: {metric.imeDiff} minutes with a score of {metric.imeScore}</p>
             <p className='paragraph'>Duration: {metric.duration} minutes with a score of {metric.saScore}</p>
 
         </div>
