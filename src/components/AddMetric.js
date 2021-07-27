@@ -78,11 +78,8 @@ const AddMetric = ({onAdd}) => {
         if (datDiff >= 0 && datDiff <= 15) {
             datScore = 1;
 
-        } else if (datDiff >= 16 && datDiff <= 30) { 
-            datScore = 2;
-
         } else {
-            datScore = 3;
+            datScore = 2;
 
         }
 
@@ -90,11 +87,8 @@ const AddMetric = ({onAdd}) => {
         if (saDiff >= 0 && saDiff <= 15) {
             saScore = 1;
 
-        } else if (saDiff >= 16 && saDiff <= 30) { 
-            saScore = 2;
-
         } else {
-            saScore = 3;
+            saScore = 2;
 
         }
 
@@ -102,11 +96,8 @@ const AddMetric = ({onAdd}) => {
         if (duration >= 0 && duration <= 15) {
             durationScore = 1;
 
-        } else if (duration >= 16 && duration <= 30) { 
-            durationScore = 2;
-
         } else {
-            durationScore = 3;
+            durationScore = 2;
 
         }
 
@@ -118,11 +109,8 @@ const AddMetric = ({onAdd}) => {
         if (datDiff >= 0 && datDiff <= 30) {
             datScore = 1;
 
-        } else if (datDiff >= 31 && datDiff <= 60) { 
-            datScore = 2;
-
         } else {
-            datScore = 3;
+            datScore = 2;
 
         }
 
@@ -130,11 +118,8 @@ const AddMetric = ({onAdd}) => {
         if (saDiff >= 0 && saDiff <= 30) {
             saScore = 1;
 
-        } else if (saDiff >= 31 && saDiff <= 60) { 
-            saScore = 2;
-
         } else {
-            saScore = 3;
+            saScore = 2;
 
         }
 
@@ -142,11 +127,8 @@ const AddMetric = ({onAdd}) => {
         if (duration >= 0 && duration <= 30) {
             durationScore = 1;
 
-        } else if (duration >= 31 && duration <= 60) { 
-            durationScore = 2;
-
         } else {
-            durationScore = 3;
+            durationScore = 2;
 
         }
 
@@ -158,11 +140,8 @@ const AddMetric = ({onAdd}) => {
         if (datDiff >= 0 && datDiff <= 60) {
             datScore = 1;
 
-        } else if (datDiff >= 61 && datDiff <= 90) { 
-            datScore = 2;
-
         } else {
-            datScore = 3;
+            datScore = 2;
 
         }
 
@@ -170,11 +149,8 @@ const AddMetric = ({onAdd}) => {
         if (saDiff >= 0 && saDiff <= 60) {
             saScore = 1;
 
-        } else if (saDiff >= 61 && saDiff <= 90) { 
-            saScore = 2;
-
         } else {
-            saScore = 3;
+            saScore = 2;
 
         }
 
@@ -182,11 +158,8 @@ const AddMetric = ({onAdd}) => {
         if (duration >= 0 && duration <= 60) {
             durationScore = 1;
 
-        } else if (duration >= 61 && duration <= 90) { 
-            durationScore = 2;
-
         } else {
-            durationScore = 3;
+            durationScore = 2;
 
         }
 
