@@ -40,7 +40,10 @@ const Month = ({metrics, monthName, month}) => {
 
     }
 
-    const totalCalc = (dat, sa, dur) => {
+    const totalCalc = (sev, month) => {
+        var dat = avgCalc(sev, month, 'dat')
+        var sa = avgCalc(sev, month, 'sa')
+        var dur = avgCalc(sev, month, 'dur')
         var calc = (dat + sa + dur) / 3
         return calc.toFixed(2)
 
@@ -56,10 +59,10 @@ const Month = ({metrics, monthName, month}) => {
                     <h5 className='sevs'>SA Average: {avgCalc(1, month, 'sa')}</h5>
                     <h5 className='sevs'>Duration Average {avgCalc(1, month, 'dur')}</h5>
                     <h5 className=
-                    {totalCalc(avgCalc(1, month, 'dat'), avgCalc(1, month, 'sa'), avgCalc(1, month, 'dur')) < 2 ? 'sevsGreen' :
-                    totalCalc(avgCalc(1, month, 'dat'), avgCalc(1, month, 'sa'), avgCalc(1, month, 'dur')) < 3 ? 'sevsYellow' : 
-                    totalCalc(avgCalc(1, month, 'dat'), avgCalc(1, month, 'sa'), avgCalc(1, month, 'dur')) >= 3 ? 'sevsRed' : null}>
-                        Total Average: {totalCalc(avgCalc(1, month, 'dat'), avgCalc(1, month, 'sa'), avgCalc(1, month, 'dur'))}</h5>
+                    {totalCalc(1, month) < 2 ? 'sevsGreen' :
+                    totalCalc(1, month) < 3 ? 'sevsYellow' : 
+                    totalCalc(1, month) >= 3 ? 'sevsRed' : null}>
+                        Total Average: {totalCalc(1, month)}</h5>
                 </div>
 
                 <div>
@@ -68,10 +71,10 @@ const Month = ({metrics, monthName, month}) => {
                     <h5 className='sevs'>SA Average: {avgCalc(2, month, 'sa')}</h5>
                     <h5 className='sevs'>Duration Average {avgCalc(2, month, 'dur')}</h5>
                     <h5 className=
-                    {totalCalc(avgCalc(2, month, 'dat'), avgCalc(2, month, 'sa'), avgCalc(2, month, 'dur')) < 2 ? 'sevsGreen' :
-                    totalCalc(avgCalc(2, month, 'dat'), avgCalc(2, month, 'sa'), avgCalc(2, month, 'dur')) < 3 ? 'sevsYellow' : 
-                    totalCalc(avgCalc(2, month, 'dat'), avgCalc(2, month, 'sa'), avgCalc(2, month, 'dur')) >= 3 ? 'sevsRed' : null}>
-                        Total Average: {totalCalc(avgCalc(2, month, 'dat'), avgCalc(2, month, 'sa'), avgCalc(2, month, 'dur'))}</h5>
+                    {totalCalc(2, month) < 2 ? 'sevsGreen' :
+                    totalCalc(2, month) < 3 ? 'sevsYellow' : 
+                    totalCalc(2, month) >= 3 ? 'sevsRed' : null}>
+                        Total Average: {totalCalc(2, month)}</h5>
                 </div>
 
                 <div>
@@ -80,10 +83,10 @@ const Month = ({metrics, monthName, month}) => {
                     <h5 className='sevs'>SA Average: {avgCalc(3, month, 'sa')}</h5>
                     <h5 className='sevs'>Duration Average {avgCalc(3, month, 'dur')}</h5>
                     <h5 className=
-                    {totalCalc(avgCalc(3, month, 'dat'), avgCalc(3, month, 'sa'), avgCalc(3, month, 'dur')) < 2 ? 'sevsGreen' :
-                    totalCalc(avgCalc(3, month, 'dat'), avgCalc(3, month, 'sa'), avgCalc(3, month, 'dur')) < 3 ? 'sevsYellow' : 
-                    totalCalc(avgCalc(3, month, 'dat'), avgCalc(3, month, 'sa'), avgCalc(3, month, 'dur')) >= 3 ? 'sevsRed' : null}>
-                        Total Average: {totalCalc(avgCalc(3, month, 'dat'), avgCalc(3, month, 'sa'), avgCalc(3, month, 'dur'))}</h5>
+                    {totalCalc(3, month) < 2 ? 'sevsGreen' :
+                    totalCalc(3, month) < 3 ? 'sevsYellow' : 
+                    totalCalc(3, month) >= 3 ? 'sevsRed' : null}>
+                        Total Average: {totalCalc(3, month)}</h5>
                 </div>
             </header>
             <br></br>     
