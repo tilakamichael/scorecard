@@ -22,6 +22,7 @@ const AddMetric = ({onAdd}) => {
     var datScore;
     var saScore;
     var durationScore;
+    var imeScore;
 
     const onSave = (e) => {
         e.preventDefault()
@@ -79,25 +80,25 @@ const AddMetric = ({onAdd}) => {
             datScore = 1;
 
         } else {
-            datScore = 2;
+            datScore = 3;
 
         }
 
         //SA
-        if (saDiff >= 0 && saDiff <= 15) {
+        if (saDiff >= 0 && saDiff <= 30) {
             saScore = 1;
 
         } else {
-            saScore = 2;
+            saScore = 3;
 
         }
 
         //Duration
-        if (duration >= 0 && duration <= 15) {
+        if (duration >= 0 && duration <= 45) {
             durationScore = 1;
 
         } else {
-            durationScore = 2;
+            durationScore = 3;
 
         }
 
@@ -110,25 +111,25 @@ const AddMetric = ({onAdd}) => {
             datScore = 1;
 
         } else {
-            datScore = 2;
+            datScore = 3;
 
         }
 
         //SA
-        if (saDiff >= 0 && saDiff <= 30) {
+        if (saDiff >= 0 && saDiff <= 60) {
             saScore = 1;
 
         } else {
-            saScore = 2;
+            saScore = 3;
 
         }
 
         //Duration
-        if (duration >= 0 && duration <= 30) {
+        if (duration >= 0 && duration <= 90) {
             durationScore = 1;
 
         } else {
-            durationScore = 2;
+            durationScore = 3;
 
         }
 
@@ -141,25 +142,25 @@ const AddMetric = ({onAdd}) => {
             datScore = 1;
 
         } else {
-            datScore = 2;
+            datScore = 3;
 
         }
 
         //SA
-        if (saDiff >= 0 && saDiff <= 60) {
+        if (saDiff >= 0 && saDiff <= 90) {
             saScore = 1;
 
         } else {
-            saScore = 2;
+            saScore = 3;
 
         }
 
         //Duration
-        if (duration >= 0 && duration <= 60) {
+        if (duration >= 0 && duration <= 120) {
             durationScore = 1;
 
         } else {
-            durationScore = 2;
+            durationScore = 3;
 
         }
 
