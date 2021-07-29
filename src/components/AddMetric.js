@@ -44,7 +44,7 @@ const AddMetric = ({onAdd}) => {
             return
         }
 
-        if(!datTime) {
+        /*if(!datTime) {
             alert('Please enter a DAT aware time')
             return
         }
@@ -52,13 +52,12 @@ const AddMetric = ({onAdd}) => {
         if (!saTime) {
             alert('Please enter an initial service alert time')
             return
-        }
+        }*/
 
         if (!endTime) {
             alert('Please enter an end time')
             return
         }
-        
         
         start = moment(startTime, 'h:mm A')
         dat = moment(datTime, 'h:mm A')
@@ -77,6 +76,14 @@ const AddMetric = ({onAdd}) => {
 
         duration = moment.duration(end.diff(start))
         duration = duration.asMinutes()
+        if (duration < 0) {
+            end = moment(endTime, 'h:mm A')
+            end = end.add(moment.duration(24, 'hours'))
+            duration = moment.duration(end.diff(start))
+            duration = duration.asMinutes()
+            console.log(duration)
+
+        }
 
         //Score
 

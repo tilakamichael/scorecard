@@ -15,13 +15,10 @@ const Month = ({metrics, monthName, month}) => {
             if (sev == metrics[i].sev) {
                 if (month == metrics[i].date.substring(5,7)) {
                     if (ave == 'dat') {
-                        console.log("Dat score: " + metrics[i].datScore)
                         sum += metrics[i].datScore
                     } else if (ave == 'sa') {
-                        console.log("Sa score: " + metrics[i].saScore)
                         sum += metrics[i].saScore
                     } else if (ave == 'dur') {
-                        console.log("Duration score: " + metrics[i].durationScore)
                         sum += metrics[i].durationScore
                     }
                 }
