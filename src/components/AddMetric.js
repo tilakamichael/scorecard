@@ -67,17 +67,37 @@ const AddMetric = ({onAdd}) => {
 
         datDiff = moment.duration(dat.diff(start))
         datDiff = datDiff.asMinutes()
+        if (datDiff < 0) {
+            dat = dat.add(moment.duration(24, 'hours'))
+            datDiff = moment.duration(dat.diff(start))
+            datDiff = datDiff.asMinutes()
+            console.log(datDiff)
+
+        }
 
         saDiff = moment.duration(serviceAlert.diff(start))
         saDiff = saDiff.asMinutes()
+        if (saDiff < 0) {
+            serviceAlert = serviceAlert.add(moment.duration(24, 'hours'))
+            saDiff = moment.duration(serviceAlert.diff(start))
+            saDiff = saDiff.asMinutes()
+            console.log(saDiff)
+
+        }
 
         imeDiff = moment.duration(ime.diff(start))
         imeDiff = imeDiff.asMinutes()
+        if (imeDiff < 0) {
+            ime = ime.add(moment.duration(24, 'hours'))
+            imeDiff = moment.duration(ime.diff(start))
+            imeDiff = imeDiff.asMinutes()
+            console.log(imeDiff)
+
+        }
 
         duration = moment.duration(end.diff(start))
         duration = duration.asMinutes()
         if (duration < 0) {
-            end = moment(endTime, 'h:mm A')
             end = end.add(moment.duration(24, 'hours'))
             duration = moment.duration(end.diff(start))
             duration = duration.asMinutes()
