@@ -7,7 +7,6 @@ const Metric = ({metric, onDelete}) => {
         <div className='metric'>
             <h3>
                 {metric.text} : {metric.date}
-                <HiOutlinePencil className='edit'/>
                 <HiOutlineTrash className='trash' 
                 onClick={() => onDelete(metric.id)} />
                 
