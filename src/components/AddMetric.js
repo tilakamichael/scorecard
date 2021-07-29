@@ -12,6 +12,10 @@ const AddMetric = ({onAdd}) => {
     const[saTime, setSa] = useState('')
     const[endTime, setEnd] = useState('')
     const[imeTime, setImeTime] = useState('')
+    const[datAhead, setDatAhead] = useState('')
+    const[saAhead, setSaAhead] = useState('')
+    const[imeAhead, setImeAhead] = useState('')
+    const[endAhead, setEndAhead] = useState('')
     var start;
     var dat;
     var serviceAlert;
@@ -64,6 +68,11 @@ const AddMetric = ({onAdd}) => {
         serviceAlert = moment(saTime, 'h:mm A')
         end = moment(endTime, 'h:mm A')
         ime = moment(imeTime, 'h:mm A')
+
+        dat = dat.add(moment.duration((24 * datAhead), 'hours'))
+        ime = ime.add(moment.duration((24 * imeAhead), 'hours'))
+        serviceAlert = serviceAlert.add(moment.duration((24 * saAhead), 'hours'))
+        end = end.add(moment.duration((24 * endAhead), 'hours'))
 
         datDiff = moment.duration(dat.diff(start))
         datDiff = datDiff.asMinutes()
@@ -265,16 +274,32 @@ const AddMetric = ({onAdd}) => {
                 <input type='time' value={datTime} onChange={(e) => setDat(e.target.value)}></input>
             </div>
             <div className='form-control'>
+                <label>DAT Ahead by days?</label>
+                <input type='number' placeholder='Enter number 0+' min = '0' value={datAhead} onChange={(e) => setDatAhead(e.target.value)}></input>
+            </div>
+            <div className='form-control'>
                 <label>Initial SA Time</label>
                 <input type='time' value={saTime} onChange={(e) => setSa(e.target.value)}></input>
+            </div>
+            <div className='form-control'>
+                <label>SA Ahead by days?</label>
+                <input type='number' placeholder='Enter number 0+' min = '0' value={saAhead} onChange={(e) => setSaAhead(e.target.value)}></input>
             </div>
             <div className='form-control'>
                 <label>Incident Management Escalation Time</label>
                 <input type='time' value={imeTime} onChange={(e) => setImeTime(e.target.value)}></input>
             </div>
             <div className='form-control'>
+                <label>IME Ahead by days?</label>
+                <input type='number' placeholder='Enter number 0+' min = '0' value={imeAhead} onChange={(e) => setImeAhead(e.target.value)}></input>
+            </div>
+            <div className='form-control'>
                 <label>End Time</label>
                 <input type='time' value={endTime} onChange={(e) => setEnd(e.target.value)}></input>
+            </div>
+            <div className='form-control'>
+                <label>End Ahead by days?</label>
+                <input type='number' placeholder='Enter number 0+' min = '0' value={endAhead} onChange={(e) => setEndAhead(e.target.value)}></input>
             </div>
             <input type='submit' value='Save Metric' className='btn btn-block'/>
         </form>

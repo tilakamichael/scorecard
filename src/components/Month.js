@@ -52,9 +52,9 @@ const Month = ({metrics, monthName, month}) => {
             <header className='header'>
                 <div>
                     <h4 className='sevs'>Sev 1</h4>
-                    <h5 className='sevs'>DAT Average: {avgCalc(1, month, 'dat')}</h5>
-                    <h5 className='sevs'>SA Average: {avgCalc(1, month, 'sa')}</h5>
-                    <h5 className='sevs'>Duration Average {avgCalc(1, month, 'dur')}</h5>
+                    <h5 className='sevs'>DAT Average: {avgCalc(1, month, 'dat').toFixed(2)}</h5>
+                    <h5 className='sevs'>SA Average: {avgCalc(1, month, 'sa').toFixed(2)}</h5>
+                    <h5 className='sevs'>Duration Average {avgCalc(1, month, 'dur').toFixed(2)}</h5>
                     <h5 className=
                     {totalCalc(1, month) < 2 ? 'sevsGreen' :
                     totalCalc(1, month) < 3 ? 'sevsYellow' : 
@@ -64,9 +64,9 @@ const Month = ({metrics, monthName, month}) => {
 
                 <div>
                     <h4 className='sevs'>Sev 2</h4>
-                    <h5 className='sevs'>DAT Average: {avgCalc(2, month, 'dat')}</h5>
-                    <h5 className='sevs'>SA Average: {avgCalc(2, month, 'sa')}</h5>
-                    <h5 className='sevs'>Duration Average {avgCalc(2, month, 'dur')}</h5>
+                    <h5 className='sevs'>DAT Average: {avgCalc(2, month, 'dat').toFixed(2)}</h5>
+                    <h5 className='sevs'>SA Average: {avgCalc(2, month, 'sa').toFixed(2)}</h5>
+                    <h5 className='sevs'>Duration Average {avgCalc(2, month, 'dur').toFixed(2)}</h5>
                     <h5 className=
                     {totalCalc(2, month) < 2 ? 'sevsGreen' :
                     totalCalc(2, month) < 3 ? 'sevsYellow' : 
@@ -76,9 +76,9 @@ const Month = ({metrics, monthName, month}) => {
 
                 <div>
                     <h4 className='sevs'>Sev 3</h4>
-                    <h5 className='sevs'>DAT Average: {avgCalc(3, month, 'dat')}</h5>
-                    <h5 className='sevs'>SA Average: {avgCalc(3, month, 'sa')}</h5>
-                    <h5 className='sevs'>Duration Average {avgCalc(3, month, 'dur')}</h5>
+                    <h5 className='sevs'>DAT Average: {avgCalc(3, month, 'dat').toFixed(2)}</h5>
+                    <h5 className='sevs'>SA Average: {avgCalc(3, month, 'sa').toFixed(2)}</h5>
+                    <h5 className='sevs'>Duration Average {avgCalc(3, month, 'dur').toFixed(2)}</h5>
                     <h5 className=
                     {totalCalc(3, month) < 2 ? 'sevsGreen' :
                     totalCalc(3, month) < 3 ? 'sevsYellow' : 
