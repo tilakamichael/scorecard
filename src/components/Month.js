@@ -4,7 +4,7 @@ const Month = ({metrics, monthName, month}) => {
         var count = 0;
 
         for (var j = 0; j < metrics.length; j++) {
-            if (metrics[j].sev == sev) {
+            if (metrics[j].sev == sev && metrics[j].date.substring(5,7) == month) {
                 count++
 
             }
