@@ -245,6 +245,10 @@ const AddMetric = ({onAdd}) => {
         setSa('')
         setEnd('')
         setImeTime('')
+        setDatAhead('')
+        setSaAhead('')
+        setImeAhead('')
+        setEndAhead('')
     }
 
     return (

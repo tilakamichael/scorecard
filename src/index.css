@@ -68,6 +68,16 @@ body {
 
 }
 
+.edit {
+  color: darkblue;
+
+}
+
+.edit:hover {
+  color: blue;
+
+}
+
 .btn {
   display: inline-block;
   background: #4e6659;
