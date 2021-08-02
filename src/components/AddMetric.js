@@ -122,17 +122,22 @@ const AddMetric = ({onAdd}) => {
         if (datDiff >= 0 && datDiff <= 15) {
             datScore = 1;
 
-        } else {
+        } else if (datDiff > 15) {
             datScore = 3;
 
+        } else {
+            datScore = 0;
         }
 
         //SA
         if (saDiff >= 0 && saDiff <= 30) {
             saScore = 1;
 
-        } else {
+        } else if (saDiff > 30) {
             saScore = 3;
+
+        } else {
+            saScore = 0;
 
         }
 
@@ -140,16 +145,22 @@ const AddMetric = ({onAdd}) => {
         if (duration >= 0 && duration <= 45) {
             durationScore = 1;
 
-        } else {
+        } else if (duration > 45){
             durationScore = 3;
+
+        } else {
+            durationScore = 0;
 
         }
 
         if (imeDiff >= 0 && imeDiff <= 15) {
             imeScore = 1;
 
-        } else {
+        } else if (imeDiff > 15) {
             imeScore = 3;
+
+        } else {
+            imeScore = 0;
 
         }
 
@@ -161,8 +172,11 @@ const AddMetric = ({onAdd}) => {
         if (datDiff >= 0 && datDiff <= 30) {
             datScore = 1;
 
-        } else {
+        } else if (datDiff > 30) {
             datScore = 3;
+
+        } else {
+            datScore = 0;
 
         }
 
@@ -170,8 +184,11 @@ const AddMetric = ({onAdd}) => {
         if (saDiff >= 0 && saDiff <= 60) {
             saScore = 1;
 
-        } else {
+        } else if (saDiff > 60) {
             saScore = 3;
+
+        } else {
+            saScore = 0;
 
         }
 
@@ -179,16 +196,22 @@ const AddMetric = ({onAdd}) => {
         if (duration >= 0 && duration <= 90) {
             durationScore = 1;
 
-        } else {
+        } else if (duration > 90) {
             durationScore = 3;
+
+        } else {
+            durationScore = 0;
 
         }
 
         if (imeDiff >= 0 && imeDiff <= 30) {
             imeScore = 1;
 
-        } else {
+        } else if (imeDiff > 30) {
             imeScore = 3;
+
+        } else {
+            imeScore = 0;
 
         }
 
@@ -200,8 +223,11 @@ const AddMetric = ({onAdd}) => {
         if (datDiff >= 0 && datDiff <= 60) {
             datScore = 1;
 
-        } else {
+        } else if (datDiff > 60){
             datScore = 3;
+
+        } else {
+            datScore = 0;
 
         }
 
@@ -209,8 +235,11 @@ const AddMetric = ({onAdd}) => {
         if (saDiff >= 0 && saDiff <= 90) {
             saScore = 1;
 
-        } else {
+        } else if (saDiff > 90) {
             saScore = 3;
+
+        } else {
+            saScore = 0;
 
         }
 
@@ -218,16 +247,22 @@ const AddMetric = ({onAdd}) => {
         if (duration >= 0 && duration <= 120) {
             durationScore = 1;
 
-        } else {
+        } else if (duration > 120) {
             durationScore = 3;
+
+        } else {
+            durationScore = 0;
 
         }
 
         if (imeDiff >= 0 && imeDiff <= 60) {
             imeScore = 1;
 
-        } else {
+        } else if (imeDiff > 60) {
             imeScore = 3;
+
+        } else {
+            imeScore = 0;
 
         }
 
