@@ -12,23 +12,28 @@ const AddMetric = ({onAdd}) => {
     const[saTime, setSa] = useState('')
     const[endTime, setEnd] = useState('')
     const[imeTime, setImeTime] = useState('')
+    const[cacTime, setCacTime] = useState('')
     const[datAhead, setDatAhead] = useState('')
     const[saAhead, setSaAhead] = useState('')
     const[imeAhead, setImeAhead] = useState('')
     const[endAhead, setEndAhead] = useState('')
+    const[cacAhead, setCacAhead] = useState('')
     var start;
     var dat;
     var serviceAlert;
     var end;
     var ime;
+    var cac;
     var datDiff;
     var saDiff;
     var imeDiff;
+    var cacDiff;
     var duration;
     var datScore;
     var saScore;
     var durationScore;
     var imeScore;
+    var cacScore;
 
     const onSave = (e) => {
         e.preventDefault()
@@ -48,15 +53,10 @@ const AddMetric = ({onAdd}) => {
             return
         }
 
-        /*if(!datTime) {
-            alert('Please enter a DAT aware time')
+        if (!endTime) {
+            alert('Please enter an end time')
             return
         }
-
-        if (!saTime) {
-            alert('Please enter an initial service alert time')
-            return
-        }*/
 
         if (!endTime) {
             alert('Please enter an end time')
@@ -68,11 +68,13 @@ const AddMetric = ({onAdd}) => {
         serviceAlert = moment(saTime, 'h:mm A')
         end = moment(endTime, 'h:mm A')
         ime = moment(imeTime, 'h:mm A')
+        cac = moment(cacTime, 'h:mm A')
 
         dat = dat.add(moment.duration((24 * datAhead), 'hours'))
         ime = ime.add(moment.duration((24 * imeAhead), 'hours'))
         serviceAlert = serviceAlert.add(moment.duration((24 * saAhead), 'hours'))
         end = end.add(moment.duration((24 * endAhead), 'hours'))
+        cac = cac.add(moment.duration((24 * cacAhead), 'hours'))
 
         datDiff = moment.duration(dat.diff(start))
         datDiff = datDiff.asMinutes()
@@ -80,7 +82,6 @@ const AddMetric = ({onAdd}) => {
             dat = dat.add(moment.duration(24, 'hours'))
             datDiff = moment.duration(dat.diff(start))
             datDiff = datDiff.asMinutes()
-            console.log(datDiff)
 
         }
 
@@ -90,7 +91,6 @@ const AddMetric = ({onAdd}) => {
             serviceAlert = serviceAlert.add(moment.duration(24, 'hours'))
             saDiff = moment.duration(serviceAlert.diff(start))
             saDiff = saDiff.asMinutes()
-            console.log(saDiff)
 
         }
 
@@ -100,7 +100,15 @@ const AddMetric = ({onAdd}) => {
             ime = ime.add(moment.duration(24, 'hours'))
             imeDiff = moment.duration(ime.diff(start))
             imeDiff = imeDiff.asMinutes()
-            console.log(imeDiff)
+
+        }
+
+        cacDiff = moment.duration(cac.diff(start))
+        cacDiff = cacDiff.asMinutes()
+        if (cacDiff < 0) {
+            cac = cac.add(moment.duration(24, 'hours'))
+            cacDiff = moment.duration(cac.diff(start))
+            cacDiff = cacDiff.asMinutes()
 
         }
 
@@ -110,7 +118,6 @@ const AddMetric = ({onAdd}) => {
             end = end.add(moment.duration(24, 'hours'))
             duration = moment.duration(end.diff(start))
             duration = duration.asMinutes()
-            console.log(duration)
 
         }
 
@@ -161,6 +168,17 @@ const AddMetric = ({onAdd}) => {
 
         } else {
             imeScore = 0;
+
+        }
+
+        if (cacDiff >= 0 && cacDiff <= 10) {
+            cacScore = 1;
+
+        } else if (imeDiff > 10) {
+            cacScore = 3;
+
+        } else {
+            cacScore = 0;
 
         }
 
@@ -215,6 +233,17 @@ const AddMetric = ({onAdd}) => {
 
         }
 
+        if (cacDiff >= 0 && cacDiff <= 30) {
+            cacScore = 1;
+
+        } else if (imeDiff > 30) {
+            cacScore = 3;
+
+        } else {
+            cacScore = 0;
+
+        }
+
     }
 
     //Sev 3
@@ -266,9 +295,20 @@ const AddMetric = ({onAdd}) => {
 
         }
 
+        if (cacDiff >= 0 && cacDiff <= 60) {
+            cacScore = 1;
+
+        } else if (imeDiff > 60) {
+            cacScore = 3;
+
+        } else {
+            cacScore = 0;
+
+        }
+
     }
 
-        onAdd({text, desc, date, sev, day, startTime, datTime, saTime, endTime, duration, saDiff, datDiff, durationScore, saScore, datScore, imeTime, imeDiff, imeScore})
+        onAdd({text, desc, date, sev, day, startTime, datTime, saTime, cacTime, endTime, duration, saDiff, datDiff, cacDiff, durationScore, saScore, datScore, cacScore, imeTime, imeDiff, imeScore, datAhead, saAhead, imeAhead, cacAhead, endAhead})
 
         setText('')
         setDesc('')
@@ -280,10 +320,12 @@ const AddMetric = ({onAdd}) => {
         setSa('')
         setEnd('')
         setImeTime('')
+        setCacTime('')
         setDatAhead('')
         setSaAhead('')
         setImeAhead('')
         setEndAhead('')
+        setCacAhead('')
     }
 
     return (
@@ -331,6 +373,14 @@ const AddMetric = ({onAdd}) => {
             <div className='form-control'>
                 <label>IME Ahead by days?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={imeAhead} onChange={(e) => setImeAhead(e.target.value)}></input>
+            </div>
+            <div className='form-control'>
+                <label>Correlate Affecting Change Time</label>
+                <input type='time' value={cacTime} onChange={(e) => setCacTime(e.target.value)}></input>
+            </div>
+            <div className='form-control'>
+                <label>CAC Ahead by days?</label>
+                <input type='number' placeholder='Enter number 0+' min = '0' value={cacAhead} onChange={(e) => setCacAhead(e.target.value)}></input>
             </div>
             <div className='form-control'>
                 <label>End Time</label>
