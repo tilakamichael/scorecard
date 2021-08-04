@@ -47,7 +47,31 @@ const Month = ({metrics, monthName, month}) => {
         var dur = avgCalc(sev, month, 'dur')
         var ime = avgCalc(sev, month, 'ime')
         var cac = avgCalc(sev, month, 'cac')
-        var calc = (dat + sa + dur + ime + cac) / 5
+        var count = 0
+
+        if (dat > 0) {
+            count++
+
+        }
+        if (sa > 0) {
+            count++
+
+        }
+        if (dur > 0) {
+            count++
+
+        }
+        if (ime > 0) {
+            count++
+
+        }
+        if (cac > 0) {
+            count++
+
+        }
+
+
+        var calc = (dat + sa + dur + ime + cac) / count
         return calc.toFixed(2)
 
     }
