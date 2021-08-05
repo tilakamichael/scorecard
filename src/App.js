@@ -77,10 +77,10 @@ function App() {
 
     setMetrics([...metrics, data])
 
-    //const id = Math.floor(Math.random() * 10000) + 1
+    const id = Math.floor(Math.random() * 10000) + 1
 
-    //const newMetric = {id, ...metric}
-    //setMetrics([...metrics, newMetric])
+    const newMetric = {id, ...metric}
+    setMetrics([...metrics, newMetric])
 
   }
 
