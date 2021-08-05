@@ -1,6 +1,6 @@
 import Header from './components/Header'
 import Metric from './components/Metrics'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import AddMetric from './components/AddMetric'
 import {CSVLink} from 'react-csv'
 
@@ -8,23 +8,6 @@ function App() {
   const [showAddMetric, setShowAddMetric] = useState(false)
 
   const [metrics, setMetrics] = useState([])
-
-  useEffect(() => {
-    const getMetrics = async () => {
-      const metricsFromServer = await fetchMetrics()
-      setMetrics(metricsFromServer)
-
-    }
-
-    getMetrics()
-  }, [])
-
-  const fetchMetrics = async () => {
-    const res = await fetch('http://localhost:5000/metrics')
-    const data = await res.json()
-
-    return data
-  }
 
   const headers = [
     {label: 'Incident Ticket', key: 'text'},
@@ -56,27 +39,11 @@ function App() {
   };
 
   const deleteMetric = async (id) => {
-    await fetch(`http://localhost:5000/metrics/${id}`, {
-      method: 'DELETE',
-    })
-
     setMetrics(metrics.filter((metric) => metric.id !== id))
 
   }
 
   const addMetric = async (metric) => {
-    const res = await fetch('http://localhost:5000/metrics', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(metric)
-    })
-
-    const data = await res.json()
-
-    setMetrics([...metrics, data])
-
     const id = Math.floor(Math.random() * 10000) + 1
 
     const newMetric = {id, ...metric}
