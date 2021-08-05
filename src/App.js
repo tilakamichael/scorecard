@@ -2,7 +2,6 @@ import Header from './components/Header'
 import Metric from './components/Metrics'
 import {useState, useEffect} from 'react'
 import AddMetric from './components/AddMetric'
-import Button from './components/Button'
 import {CSVLink} from 'react-csv'
 
 function App() {  
@@ -82,11 +81,6 @@ function App() {
 
     //const newMetric = {id, ...metric}
     //setMetrics([...metrics, newMetric])
-
-  }
-
-  const exportSheet = () => {
-    console.log()
 
   }
 

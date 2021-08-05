@@ -124,7 +124,7 @@ const AddMetric = ({onAdd}) => {
         //Score
 
     //Sev 1
-    if (sev == 1) {
+    if (sev === '1') {
         //DAT Aware
         if (datDiff >= 0 && datDiff <= 15) {
             datScore = 1;
@@ -185,7 +185,7 @@ const AddMetric = ({onAdd}) => {
     }
 
     //Sev 2
-    if (sev == 2) {
+    if (sev === '2') {
         //DAT Aware
         if (datDiff >= 0 && datDiff <= 30) {
             datScore = 1;
@@ -247,7 +247,7 @@ const AddMetric = ({onAdd}) => {
     }
 
     //Sev 3
-    if (sev == 3) {
+    if (sev === '3') {
         //DAT Aware
         if (datDiff >= 0 && datDiff <= 60) {
             datScore = 1;
