@@ -6,7 +6,6 @@ const AddMetric = ({onAdd}) => {
     const[desc, setDesc] = useState('')
     const[date, setDate] = useState('')
     const[sev, setSev] = useState('')
-    const[day, setDay] = useState(false)
     const[startTime, setStart] = useState('')
     const[datTime, setDat] = useState('')
     const[saTime, setSa] = useState('')
@@ -18,6 +17,7 @@ const AddMetric = ({onAdd}) => {
     const[imeAhead, setImeAhead] = useState('')
     const[endAhead, setEndAhead] = useState('')
     const[cacAhead, setCacAhead] = useState('')
+    const[datBefore, setDatBefore] = useState(false)
     var start;
     var dat;
     var serviceAlert;
@@ -76,13 +76,24 @@ const AddMetric = ({onAdd}) => {
         end = end.add(moment.duration((24 * endAhead), 'hours'))
         cac = cac.add(moment.duration((24 * cacAhead), 'hours'))
 
-        datDiff = moment.duration(dat.diff(start))
-        datDiff = datDiff.asMinutes()
-        if (datDiff < 0) {
-            dat = dat.add(moment.duration(24, 'hours'))
+        if (!datBefore) {
             datDiff = moment.duration(dat.diff(start))
             datDiff = datDiff.asMinutes()
+            if (datDiff < 0) {
+                dat = dat.add(moment.duration(24, 'hours'))
+                datDiff = moment.duration(dat.diff(start))
+                datDiff = datDiff.asMinutes()
 
+            }
+        } else {
+            datDiff = moment.duration(start.diff(dat))
+            datDiff = datDiff.asMinutes()
+            if (datDiff < 0) {
+                dat = dat.add(moment.duration(24, 'hours'))
+                datDiff = moment.duration(start.diff(dat))
+                datDiff = datDiff.asMinutes()
+
+            }
         }
 
         saDiff = moment.duration(serviceAlert.diff(start))
@@ -308,13 +319,12 @@ const AddMetric = ({onAdd}) => {
 
     }
 
-        onAdd({text, desc, date, sev, day, startTime, datTime, saTime, cacTime, endTime, duration, saDiff, datDiff, cacDiff, durationScore, saScore, datScore, cacScore, imeTime, imeDiff, imeScore, datAhead, saAhead, imeAhead, cacAhead, endAhead})
+        onAdd({text, desc, date, sev, startTime, datTime, saTime, cacTime, endTime, duration, saDiff, datDiff, cacDiff, durationScore, saScore, datScore, cacScore, imeTime, imeDiff, imeScore, datAhead, saAhead, imeAhead, cacAhead, endAhead, datBefore})
 
         setText('')
         setDesc('')
         setDate('')
         setSev('')
-        setDay(false)
         setStart('')
         setDat('')
         setSa('')
@@ -326,6 +336,7 @@ const AddMetric = ({onAdd}) => {
         setImeAhead('')
         setEndAhead('')
         setCacAhead('')
+        setDatBefore(false)
     }
 
     return (
@@ -354,8 +365,12 @@ const AddMetric = ({onAdd}) => {
                 <label>DAT Aware Time</label>
                 <input type='time' value={datTime} onChange={(e) => setDat(e.target.value)}></input>
             </div>
+            <div className='form-control-check'>
+                <label>DAT Aware Before Start Time?</label>
+                <input type='checkbox' value={datBefore} onChange={(e) => setDatBefore(e.currentTarget.checked)}></input>
+            </div>
             <div className='form-control'>
-                <label>DAT Ahead by days?</label>
+                <label>DAT day difference?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={datAhead} onChange={(e) => setDatAhead(e.target.value)}></input>
             </div>
             <div className='form-control'>
