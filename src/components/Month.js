@@ -4,8 +4,8 @@ const Month = ({metrics, monthName, month}) => {
         var count = 0;
 
         for (var j = 0; j < metrics.length; j++) {
-            if (metrics[j].sev === sev && metrics[j].date.substring(5,7) === month) {
-                count++
+            if (metrics[j].sev === sev && (metrics[j].date.substring(5,7) === month || month === '13')) {
+                count++ 
 
             }
 
@@ -13,7 +13,7 @@ const Month = ({metrics, monthName, month}) => {
         
         for (var i = 0; i < metrics.length; i++) {
             if (sev === metrics[i].sev) {
-                if (month === metrics[i].date.substring(5,7)) {
+                if (month === metrics[i].date.substring(5,7) || month === '13') {
                     if (ave === 'dat') {
                         sum += metrics[i].datScore
                     } else if (ave === 'sa') {

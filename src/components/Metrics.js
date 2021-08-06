@@ -24,6 +24,7 @@ const Metrics = ({metrics, onDelete, onToggle}) => {
          <Month metrics={metrics} monthName='October' month='10'/>
          <Month metrics={metrics} monthName='November' month='11'/>
          <Month metrics={metrics} monthName='December' month='12'/>
+         <Month metrics={metrics} monthName='All' month='13'/>
         </>
     )
 }
