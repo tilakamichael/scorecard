@@ -89,7 +89,7 @@ const AddMetric = ({onAdd}) => {
             datDiff = moment.duration(start.diff(dat))
             datDiff = datDiff.asMinutes()
             if (datDiff < 0) {
-                dat = dat.add(moment.duration(24, 'hours'))
+                start = start.add(moment.duration(24, 'hours'))
                 datDiff = moment.duration(start.diff(dat))
                 datDiff = datDiff.asMinutes()
 
