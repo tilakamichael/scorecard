@@ -367,7 +367,7 @@ const AddMetric = ({onAdd}) => {
             </div>
             <div className='form-control-check'>
                 <label>DAT Aware Before Start Time?</label>
-                <input type='checkbox' value={datBefore} onChange={(e) => setDatBefore(e.currentTarget.checked)}></input>
+                <input type='checkbox' checked={datBefore} value={datBefore} onChange={(e) => setDatBefore(e.currentTarget.checked)}></input>
             </div>
             <div className='form-control'>
                 <label>DAT day difference?</label>
