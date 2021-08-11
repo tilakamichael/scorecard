@@ -34,9 +34,7 @@ const AddMetric = ({onAdd}) => {
     var durationScore;
     var imeScore;
     var cacScore;
-    var earliestDay;
-    var latestDate;
-
+    
     const onSave = (e) => {
         e.preventDefault()
 

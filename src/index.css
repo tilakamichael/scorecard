@@ -162,6 +162,18 @@ body {
 
 }
 
+table, th, td {
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+tr:hover {background-color: #FF5E6F;}
+
 footer {
   margin-top: 30px;
   text-align: center;

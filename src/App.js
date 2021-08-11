@@ -97,6 +97,48 @@ function App() {
       {metrics.length > 0 ? <><Metric metrics={metrics} onDelete={deleteMetric} />
       </> : 'No more major events'}
       {metrics.length > 0 ? <><CSVLink {...csvReport}>Export</CSVLink></> : ""}
+      
+      <br />
+      <br />  
+      
+      {metrics.length > 0 ? <><table>
+        <h5>Table for scores:</h5>
+        <h6>Metric in time = 1</h6>
+        <h6>Not in time = 3</h6>
+        <br />
+        <tr>
+          <th>Metric</th>
+          <th>DAT Aware</th>
+          <th>SA Distribution</th>
+          <th>IME Time</th>
+          <th>CAC Time</th>
+          <th>Duration</th>
+        </tr>
+        <tr>
+          <td>Severity 1</td>
+          <td>30</td>
+          <td>45</td>
+          <td>15</td>
+          <td>10</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Severity 2</td>
+          <td>60</td>
+          <td>90</td>
+          <td>30</td>
+          <td>30</td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td>Severity 3</td>
+          <td>90</td>
+          <td>120</td>
+          <td>60</td>
+          <td>60</td>
+          <td>60</td>
+        </tr>
+      </table></> : ""}
     </div>
   );
 }
