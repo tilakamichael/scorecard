@@ -6,7 +6,6 @@ const AddMetric = ({onAdd}) => {
     const[desc, setDesc] = useState('')
     const[date, setDate] = useState('')
     const[sev, setSev] = useState('')
-    const[day, setDay] = useState(false)
     const[startTime, setStart] = useState('')
     const[datTime, setDat] = useState('')
     const[saTime, setSa] = useState('')
@@ -18,6 +17,10 @@ const AddMetric = ({onAdd}) => {
     const[imeAhead, setImeAhead] = useState('')
     const[endAhead, setEndAhead] = useState('')
     const[cacAhead, setCacAhead] = useState('')
+    const[datBefore, setDatBefore] = useState(false)
+    const[saBefore, setSaBefore] = useState(false)
+    const[imeBefore, setImeBefore] = useState(false)
+    const[cacBefore, setCacBefore] = useState(false)
     var start;
     var dat;
     var serviceAlert;
@@ -34,7 +37,7 @@ const AddMetric = ({onAdd}) => {
     var durationScore;
     var imeScore;
     var cacScore;
-
+    
     const onSave = (e) => {
         e.preventDefault()
 
@@ -70,48 +73,101 @@ const AddMetric = ({onAdd}) => {
         ime = moment(imeTime, 'h:mm A')
         cac = moment(cacTime, 'h:mm A')
 
-        dat = dat.add(moment.duration((24 * datAhead), 'hours'))
-        ime = ime.add(moment.duration((24 * imeAhead), 'hours'))
-        serviceAlert = serviceAlert.add(moment.duration((24 * saAhead), 'hours'))
         end = end.add(moment.duration((24 * endAhead), 'hours'))
-        cac = cac.add(moment.duration((24 * cacAhead), 'hours'))
 
-        datDiff = moment.duration(dat.diff(start))
-        datDiff = datDiff.asMinutes()
-        if (datDiff < 0) {
-            dat = dat.add(moment.duration(24, 'hours'))
+        //DAT
+        if (!datBefore) {
+            dat = dat.add(moment.duration((24 * datAhead), 'hours'))
             datDiff = moment.duration(dat.diff(start))
             datDiff = datDiff.asMinutes()
+            if (datDiff < 0) {
+                dat = dat.add(moment.duration(24, 'hours'))
+                datDiff = moment.duration(dat.diff(start))
+                datDiff = datDiff.asMinutes()
 
+            }
+        } else {
+            start = start.add(moment.duration((24 * datAhead), 'hours'))
+            datDiff = moment.duration(start.diff(dat))
+            datDiff = datDiff.asMinutes()
+            if (datDiff < 0) {
+                start = start.add(moment.duration(24, 'hours'))
+                datDiff = moment.duration(start.diff(dat))
+                datDiff = datDiff.asMinutes()
+
+            }
         }
 
-        saDiff = moment.duration(serviceAlert.diff(start))
-        saDiff = saDiff.asMinutes()
-        if (saDiff < 0) {
-            serviceAlert = serviceAlert.add(moment.duration(24, 'hours'))
+        //SA
+        if (!saBefore) {
+            serviceAlert = serviceAlert.add(moment.duration((24 * saAhead), 'hours'))
             saDiff = moment.duration(serviceAlert.diff(start))
             saDiff = saDiff.asMinutes()
+            if (saDiff < 0) {
+                serviceAlert = serviceAlert.add(moment.duration(24, 'hours'))
+                saDiff = moment.duration(serviceAlert.diff(start))
+                saDiff = saDiff.asMinutes()
 
+            }
+        } else {
+            start = start.add(moment.duration((24 * saAhead), 'hours'))
+            saDiff = moment.duration(start.diff(serviceAlert))
+            saDiff = saDiff.asMinutes()
+            if (saDiff < 0) {
+                start = start.add(moment.duration(24, 'hours'))
+                saDiff = moment.duration(start.diff(serviceAlert))
+                saDiff = saDiff.asMinutes()
+
+            }
         }
 
-        imeDiff = moment.duration(ime.diff(start))
-        imeDiff = imeDiff.asMinutes()
-        if (imeDiff < 0) {
-            ime = ime.add(moment.duration(24, 'hours'))
+        //IME
+        if (!imeBefore) {
+            ime = ime.add(moment.duration((24 * imeAhead), 'hours'))
             imeDiff = moment.duration(ime.diff(start))
             imeDiff = imeDiff.asMinutes()
+            if (imeDiff < 0) {
+                ime = ime.add(moment.duration(24, 'hours'))
+                imeDiff = moment.duration(ime.diff(start))
+                imeDiff = imeDiff.asMinutes()
 
+            }
+        } else {
+            start = start.add(moment.duration((24 * imeAhead), 'hours'))
+            imeDiff = moment.duration(start.diff(ime))
+            imeDiff = imeDiff.asMinutes()
+            if (imeDiff < 0) {
+                start = start.add(moment.duration(24, 'hours'))
+                imeDiff = moment.duration(start.diff(ime))
+                imeDiff = imeDiff.asMinutes()
+
+            }
         }
 
-        cacDiff = moment.duration(cac.diff(start))
-        cacDiff = cacDiff.asMinutes()
-        if (cacDiff < 0) {
-            cac = cac.add(moment.duration(24, 'hours'))
+        //CAC
+        if (!cacBefore) {
+            cac = cac.add(moment.duration((24 * cacAhead), 'hours'))
             cacDiff = moment.duration(cac.diff(start))
             cacDiff = cacDiff.asMinutes()
+            if (cacDiff < 0) {
+                cac = cac.add(moment.duration(24, 'hours'))
+                cacDiff = moment.duration(cac.diff(start))
+                cacDiff = cacDiff.asMinutes()
 
+            }
+        } else {
+            start = start.add(moment.duration((24 * cacAhead), 'hours'))
+            cacDiff = moment.duration(start.diff(cac))
+            cacDiff = cacDiff.asMinutes()
+            if (cacDiff < 0) {
+                start = start.add(moment.duration(24, 'hours'))
+                cacDiff = moment.duration(start.diff(cac))
+                cacDiff = cacDiff.asMinutes()
+
+            }
         }
 
+        //Duration
         duration = moment.duration(end.diff(start))
         duration = duration.asMinutes()
         if (duration < 0) {
@@ -308,13 +364,12 @@ const AddMetric = ({onAdd}) => {
 
     }
 
-        onAdd({text, desc, date, sev, day, startTime, datTime, saTime, cacTime, endTime, duration, saDiff, datDiff, cacDiff, durationScore, saScore, datScore, cacScore, imeTime, imeDiff, imeScore, datAhead, saAhead, imeAhead, cacAhead, endAhead})
+        onAdd({text, desc, date, sev, startTime, datTime, saTime, cacTime, endTime, duration, saDiff, datDiff, cacDiff, durationScore, saScore, datScore, cacScore, imeTime, imeDiff, imeScore, datAhead, saAhead, imeAhead, cacAhead, endAhead})
 
         setText('')
         setDesc('')
         setDate('')
         setSev('')
-        setDay(false)
         setStart('')
         setDat('')
         setSa('')
@@ -326,6 +381,10 @@ const AddMetric = ({onAdd}) => {
         setImeAhead('')
         setEndAhead('')
         setCacAhead('')
+        setDatBefore(false)
+        setSaBefore(false)
+        setImeBefore(false)
+        setCacBefore(false)
     }
 
     return (
@@ -342,6 +401,7 @@ const AddMetric = ({onAdd}) => {
                 <label>Date</label>
                 <input type='date' placeholder='Add Metric' value={date} onChange={(e) => setDate(e.target.value)}></input>
             </div>
+            <hr />
             <div className='form-control'>
                 <label>Severity</label>
                 <input type='number' placeholder='Enter number 1-3' max='3' min = '1' value={sev} onChange={(e) => setSev(e.target.value)}></input>
@@ -350,38 +410,59 @@ const AddMetric = ({onAdd}) => {
                 <label>Start Time</label>
                 <input type='time' value={startTime} onChange={(e) => setStart(e.target.value)}></input>
             </div>
+            <hr />
             <div className='form-control'>
                 <label>DAT Aware Time</label>
                 <input type='time' value={datTime} onChange={(e) => setDat(e.target.value)}></input>
             </div>
+            <div className='form-control-check'>
+                <label>DAT Aware Before Start Time?</label>
+                <input type='checkbox' checked={datBefore} value={datBefore} onChange={(e) => setDatBefore(e.currentTarget.checked)}></input>
+            </div>
             <div className='form-control'>
-                <label>DAT Ahead by days?</label>
+                <label>DAT day difference?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={datAhead} onChange={(e) => setDatAhead(e.target.value)}></input>
             </div>
+            <hr />
             <div className='form-control'>
                 <label>Initial SA Time</label>
                 <input type='time' value={saTime} onChange={(e) => setSa(e.target.value)}></input>
             </div>
+            <div className='form-control-check'>
+                <label>Initial SA Before Start Time?</label>
+                <input type='checkbox' checked={saBefore} value={saBefore} onChange={(e) => setSaBefore(e.currentTarget.checked)}></input>
+            </div>
             <div className='form-control'>
-                <label>SA Ahead by days?</label>
+                <label>SA day difference?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={saAhead} onChange={(e) => setSaAhead(e.target.value)}></input>
             </div>
+            <hr />
             <div className='form-control'>
                 <label>Incident Management Escalation Time</label>
                 <input type='time' value={imeTime} onChange={(e) => setImeTime(e.target.value)}></input>
             </div>
+            <div className='form-control-check'>
+                <label>IME Before Start Time?</label>
+                <input type='checkbox' checked={imeBefore} value={imeBefore} onChange={(e) => setImeBefore(e.currentTarget.checked)}></input>
+            </div>
             <div className='form-control'>
-                <label>IME Ahead by days?</label>
+                <label>IME day difference?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={imeAhead} onChange={(e) => setImeAhead(e.target.value)}></input>
             </div>
+            <hr />
             <div className='form-control'>
                 <label>Correlate Affecting Change Time</label>
                 <input type='time' value={cacTime} onChange={(e) => setCacTime(e.target.value)}></input>
             </div>
+            <div className='form-control-check'>
+                <label>CAC Before Start Time?</label>
+                <input type='checkbox' checked={cacBefore} value={cacBefore} onChange={(e) => setCacBefore(e.currentTarget.checked)}></input>
+            </div>
             <div className='form-control'>
-                <label>CAC Ahead by days?</label>
+                <label>CAC day diffence?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={cacAhead} onChange={(e) => setCacAhead(e.target.value)}></input>
             </div>
+            <hr />
             <div className='form-control'>
                 <label>End Time</label>
                 <input type='time' value={endTime} onChange={(e) => setEnd(e.target.value)}></input>
@@ -390,6 +471,7 @@ const AddMetric = ({onAdd}) => {
                 <label>End Ahead by days?</label>
                 <input type='number' placeholder='Enter number 0+' min = '0' value={endAhead} onChange={(e) => setEndAhead(e.target.value)}></input>
             </div>
+            
             <input type='submit' value='Save Metric' className='btn btn-block'/>
         </form>
         
