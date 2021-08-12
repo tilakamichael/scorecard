@@ -1,3 +1,9 @@
+# Scorecard
+
+This project is a proof of concept that will be used to score how well an incident is managed based on timings for each metric given.
+
+A user has the ability to export the data to CSV if they need to.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
