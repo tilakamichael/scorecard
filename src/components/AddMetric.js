@@ -73,14 +73,11 @@ const AddMetric = ({onAdd}) => {
         ime = moment(imeTime, 'h:mm A')
         cac = moment(cacTime, 'h:mm A')
 
-        dat = dat.add(moment.duration((24 * datAhead), 'hours'))
-        ime = ime.add(moment.duration((24 * imeAhead), 'hours'))
-        serviceAlert = serviceAlert.add(moment.duration((24 * saAhead), 'hours'))
         end = end.add(moment.duration((24 * endAhead), 'hours'))
-        cac = cac.add(moment.duration((24 * cacAhead), 'hours'))
 
         //DAT
         if (!datBefore) {
+            dat = dat.add(moment.duration((24 * datAhead), 'hours'))
             datDiff = moment.duration(dat.diff(start))
             datDiff = datDiff.asMinutes()
             if (datDiff < 0) {
@@ -90,6 +87,7 @@ const AddMetric = ({onAdd}) => {
 
             }
         } else {
+            start = start.add(moment.duration((24 * datAhead), 'hours'))
             datDiff = moment.duration(start.diff(dat))
             datDiff = datDiff.asMinutes()
             if (datDiff < 0) {
@@ -102,6 +100,7 @@ const AddMetric = ({onAdd}) => {
 
         //SA
         if (!saBefore) {
+            serviceAlert = serviceAlert.add(moment.duration((24 * saAhead), 'hours'))
             saDiff = moment.duration(serviceAlert.diff(start))
             saDiff = saDiff.asMinutes()
             if (saDiff < 0) {
@@ -111,6 +110,7 @@ const AddMetric = ({onAdd}) => {
 
             }
         } else {
+            start = start.add(moment.duration((24 * saAhead), 'hours'))
             saDiff = moment.duration(start.diff(serviceAlert))
             saDiff = saDiff.asMinutes()
             if (saDiff < 0) {
@@ -123,6 +123,7 @@ const AddMetric = ({onAdd}) => {
 
         //IME
         if (!imeBefore) {
+            ime = ime.add(moment.duration((24 * imeAhead), 'hours'))
             imeDiff = moment.duration(ime.diff(start))
             imeDiff = imeDiff.asMinutes()
             if (imeDiff < 0) {
@@ -132,6 +133,7 @@ const AddMetric = ({onAdd}) => {
 
             }
         } else {
+            start = start.add(moment.duration((24 * imeAhead), 'hours'))
             imeDiff = moment.duration(start.diff(ime))
             imeDiff = imeDiff.asMinutes()
             if (imeDiff < 0) {
@@ -144,6 +146,7 @@ const AddMetric = ({onAdd}) => {
 
         //CAC
         if (!cacBefore) {
+            cac = cac.add(moment.duration((24 * cacAhead), 'hours'))
             cacDiff = moment.duration(cac.diff(start))
             cacDiff = cacDiff.asMinutes()
             if (cacDiff < 0) {
@@ -153,6 +156,7 @@ const AddMetric = ({onAdd}) => {
 
             }
         } else {
+            start = start.add(moment.duration((24 * cacAhead), 'hours'))
             cacDiff = moment.duration(start.diff(cac))
             cacDiff = cacDiff.asMinutes()
             if (cacDiff < 0) {
